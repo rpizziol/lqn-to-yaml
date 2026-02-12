@@ -1,0 +1,54 @@
+# Header declaration
+G
+"lqn09-3f.lqn"
+0.01
+10000
+1
+0.5
+-1
+
+# Processors declaration, with multiplicity
+P 0
+p Proc0 f m 1000
+p Proc1 f m 1000
+p Proc2 f m 1000
+-1
+
+# Tasks declaration
+T 0
+t Task0 r Entr0 -1 Proc0 m 1
+t Task1 n Entr1 -1 Proc1 m 1000
+t Task2 n Entr2 -1 Proc2 m 1000
+-1
+
+# Entries declaration
+E 0
+A Entr0 acti0 
+A Entr1 acti1 
+A Entr2 acti2 
+-1
+
+# Activities declaration
+A Task0
+s acti0 1.05 
+s acti01 0.0001 
+y acti01 Entr1 1
+:
+    acti0 -> acti01
+-1
+
+A Task1
+s acti1 1.74 
+s acti12 0.0001 
+y acti12 Entr2 1
+:
+    acti1 -> acti12;
+    acti12[Entr1]
+-1
+
+A Task2
+s acti2 2.36
+:
+    acti2[Entr2]
+-1
+

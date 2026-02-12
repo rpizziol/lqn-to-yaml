@@ -1,0 +1,169 @@
+# Header declaration
+G
+"acmeair.lqn"
+0.01
+10000
+1
+0.5
+-1
+
+# Processors declaration, with multiplicity
+P 0
+p Proc0 f m 1000
+p Proc1 f m $Proc1
+p Proc2 f m $Proc2
+p Proc3 f m $Proc3
+p Proc4 f m $Proc4
+p Proc5 f m $Proc5
+p Proc6 f m $Proc6
+p Proc7 f m $Proc7
+p Proc8 f m $Proc8
+p Proc9 f m $Proc9
+p Proc10 f m $Proc10
+-1
+
+# Tasks declaration
+T 0
+t Task0 r Entr0 -1 Proc0 m $Users
+t Task1 n Entr1 -1 Proc1 m $Task1
+t Task2 n Entr2 -1 Proc2 m $Task2
+t Task3 n Entr3 -1 Proc3 m $Task3
+t Task4 n Entr4 -1 Proc4 m $Task4
+t Task5 n Entr5 -1 Proc5 m $Task5
+t Task6 n Entr6 -1 Proc6 m $Task6
+t Task7 n Entr7 -1 Proc7 m $Task7
+t Task8 n Entr8 -1 Proc8 m $Task8
+t Task9 n Entr9 -1 Proc9 m $Task9
+t Task10 n Entr10 -1 Proc10 m $Task10
+-1
+
+# Entries declaration
+E 0
+A Entr0 acti0 
+A Entr1 acti1 
+A Entr2 acti2 
+A Entr3 acti3 
+A Entr4 acti4 
+A Entr5 acti5 
+A Entr6 acti6 
+A Entr7 acti7 
+A Entr8 acti8 
+A Entr9 acti9 
+A Entr10 acti10 
+-1
+
+# Activities declaration
+A Task0
+s acti0 0.2
+s acti01 0.0001 
+y acti01 Entr1 1
+:
+    acti0 -> acti01
+-1
+
+A Task1
+s acti1 0.5
+s acti12 0.0001 
+s acti13 0.0001 
+s acti14 0.0001 
+s acti15 0.0001 
+s acti16 0.0001 
+s acti17 0.0001 
+y acti12 Entr2 1
+y acti13 Entr3 1
+y acti14 Entr4 1
+y acti15 Entr5 1
+y acti16 Entr6 1
+y acti17 Entr7 1
+:
+    acti1 -> (0.166667)acti12 + (0.166667)acti13 + (0.166667)acti14 + (0.166667)acti15 + (0.166667)acti16 + (0.166665)acti17;
+    acti12[Entr1];
+    acti13[Entr1];
+    acti14[Entr1];
+    acti15[Entr1];
+    acti16[Entr1];
+    acti17[Entr1]
+-1
+
+A Task2
+s acti2 0.1
+s acti28 0.0001 
+y acti28 Entr8 1
+:
+    acti2 -> acti28;
+    acti28[Entr2]
+-1
+
+A Task3
+s acti3 0.15
+:
+    acti3
+-1
+
+A Task4
+s acti4 0.12
+:
+    acti4
+-1
+
+A Task5
+s acti5 0.18
+:
+    acti5
+-1
+
+A Task6
+s acti6 0.2
+s acti69 0.0001 
+s acti610 0.0001 
+y acti69 Entr9 1
+y acti610 Entr10 1
+:
+    acti6 -> (0.5)acti69 + (0.5)acti610;
+    acti69[Entr6];
+    acti610[Entr6]
+-1
+
+A Task7
+s acti7 0.1
+s acti710 0.0001 
+y acti710 Entr10 1
+:
+    acti7 -> acti710;
+    acti710[Entr7]
+-1
+
+A Task8
+s acti8 0.08
+:
+    acti8
+-1
+
+A Task9
+s acti9 0.1
+:
+    acti9
+-1
+
+A Task10
+s acti10 0.12
+:
+    acti10
+-1
+
+# DiffLQN settings, starting with #!
+# These will be ignored by LQNS
+
+# 1. Solver settings
+#! v 1.0e5              # fast rate to approximate instantaneous events
+#! solver ode           # ODE analysis - solver sim will run simulation
+#! stoptime 1000.0      # integration time horizon
+#! confidence_level 0.95
+#! confidence_percent_error 0.1
+
+# 2. Output settings
+#! throughput: Entr1 Entr2 Entr3 Entr4 Entr5 Entr6 Entr7 Entr8 Entr9 Entr10
+#! utilization: Proc1 Proc2 Proc3 Proc4 Proc5 Proc6 Proc7 Proc8 Proc9 Proc10
+#! responsetime: Entr1 Entr2 Entr3 Entr4 Entr5 Entr6 Entr7 Entr8 Entr9 Entr10 -1
+
+#! export csv
